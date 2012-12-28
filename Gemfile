@@ -11,8 +11,8 @@ end
 
 group :production do
 	gem 'pg'
-	gem 'thin'
-	gem 'event-machine'
+	# gem 'thin'
+	# gem 'event-machine'
 end
 
 
