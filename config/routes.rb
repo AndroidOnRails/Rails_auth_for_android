@@ -1,5 +1,7 @@
 Auth::Application.routes.draw do
 
+  root :to => "users#index"
+
   get "users/list_users", :as => 'users/list_users'
   post "users/create", :as => 'users/create'
   # resources :users
