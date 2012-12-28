@@ -10,7 +10,8 @@ class UsersController < ApplicationController
 		@users = User.all
 		respond_to do |format|
 			format.html
-			format.json {render json: @users}
+			format.json {render :json => {:users => @users}}
+			format.xml 	{render xml: {:users => @users}}
 		end
 	end
 
@@ -19,11 +20,13 @@ class UsersController < ApplicationController
 		if @user.save
 			respond_to do |format|
 				# format.html
-				format.json {render json: @user}
+				format.json {render :json => {:success => @user}}
+				format.xml {render :xml => @user}
 			end
 		else
 			respond_to do |format|
-				format.json {render json: @user}
+				format.json {render :json => @user}
+				format.xml {render :xml => @user}
 			end
 		end
 	end
