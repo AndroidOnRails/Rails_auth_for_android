@@ -2,8 +2,9 @@ Auth::Application.routes.draw do
 
   root :to => "users#index"
 
-  get "users/list_users", :as => 'users/list_users'
-  post "users/create", :as => 'users/create'
+  get "users/list_users" => "users#list_users", :as => 'users/list_users'
+  post "users/login" => "users#login", :as => "users/login"
+  post "users/create" => "users#create", :as => 'users/create'
   # resources :users
 
   # The priority is based upon order of creation:

@@ -18,17 +18,18 @@ class UsersController < ApplicationController
 	def create
 		@user = User.new(params[:user])
 		if @user.save
-			respond_to do |format|
-				# format.html
-				format.json {render :json => {:success => @user}}
-				format.xml {render :xml => @user}
-			end
+			render json: {:registration_success => @user}
 		else
-			respond_to do |format|
-				format.json {render :json => @user}
-				format.xml {render :xml => @user}
-			end
+			render json: {:registration_failure => @user}
 		end
 	end
 
+	def login
+		@user = User.authenticate params[:user][:email], params[:user][:password]
+		if @user
+			render json: {:login_success => @user}
+		else
+			render json: {:login_failed => @user}
+		end
+	end
 end

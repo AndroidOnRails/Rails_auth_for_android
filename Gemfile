@@ -9,6 +9,8 @@ group :development, :test do
 	gem 'sqlite3'
 end
 
+gem 'bcrypt-ruby', :require => "bcrypt"
+
 group :production do
 	gem 'pg'
 	gem 'thin'
