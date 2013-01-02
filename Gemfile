@@ -13,7 +13,7 @@ gem 'bcrypt-ruby', :require => "bcrypt"
 
 group :production do
 	gem 'pg'
-	gem 'thin'
+	# gem 'thin'
 	# gem 'event-machine'
 end
 

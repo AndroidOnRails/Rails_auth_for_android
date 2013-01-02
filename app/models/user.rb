@@ -2,18 +2,22 @@ class User < ActiveRecord::Base
   attr_accessible :username, :email, :password_salt, :password_hash, :password
   attr_accessor :password
 
+  validates :email, :uniqueness => true
+
   before_save :encrypt_password
 
   def self.authenticate(email, password)
-    print "*** #{email} ***" 
-  	user = find_by_email email
-  	if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
+    user = find_by_email email
+    if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
   		user
   	else
-  		nil
-  	end
-
-
+      user = find_by_username email
+      if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
+        user
+      else
+    		nil
+      end
+    end
   end
 
   def encrypt_password
